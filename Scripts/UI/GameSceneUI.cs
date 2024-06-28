@@ -10,6 +10,6 @@ public class GameSceneUI : MonoBehaviour
 
     public void loadmainScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        AssetBundleDownloader.instance.GoToMainMenu();
     }
 }

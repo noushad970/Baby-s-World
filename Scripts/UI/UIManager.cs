@@ -8,11 +8,10 @@ public class UIManager : MonoBehaviour
 {
     [Header("Images")]
     public Image gameButton2DownloadSliderImage;
-    public Image gameButton3DownloadSliderImage;
 
     [Header("Buttons")]
     public Button Gameplay1Button;
-    public Button Gameplay2Button;
+  //  public Button Gameplay2Button;
     public Button Gameplay3Button;
     public Button Gameplay4Button;
     [Header("Panels")]
@@ -50,8 +49,6 @@ public class UIManager : MonoBehaviour
         Gameplay1Button.onClick.AddListener(() =>
         loadScreenNotDownloadable("Game1"));
 
-        Gameplay2Button.onClick.AddListener(() =>
-        loadScreen("Game2", panel2,ref x2, panel2GameObject));
 
         Gameplay3Button.onClick.AddListener(() =>
         loadScreen("Game3",panel3,ref x3, panel3GameObject));
