@@ -6,54 +6,23 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance;
     [Header("Images")]
-    public Image gameButton2DownloadSliderImage;
-
+    
     [Header("Buttons")]
-    public Button Gameplay1Button;
-  //  public Button Gameplay2Button;
-    public Button Gameplay3Button;
-    public Button Gameplay4Button;
     [Header("Panels")]
-    public RectTransform panel2;
-    public RectTransform panel3;
-    [Header("Panel Gameobject")]
-    public GameObject panel2GameObject;
-    public GameObject panel3GameObject;
     //those data should be stored on storage
-    [Header("Storable Data")]
-    public static int x2,x3;
+    [Header("Splash Screen")]
+    public GameObject splashScreenImg;
+
     private void Awake()
     {
-        if (x2 > 0)
-        {
-            panel2GameObject.SetActive(false);
-        }
-        if (x3 > 0)
-        {
-            panel3GameObject.SetActive(false);
-        }
+        Instance = this;
     }
     void Start()
     {
-        //DontDestroyOnLoad(this);
-        if (gameButton2DownloadSliderImage == null)
-        {
-            gameButton2DownloadSliderImage = GetComponent<Image>();
-        }
-        if(x2>0)
-            panel2GameObject.SetActive(false);
-
-        if (x3 > 0)
-            panel3GameObject.SetActive(false);
-        Gameplay1Button.onClick.AddListener(() =>
-        loadScreenNotDownloadable("Game1"));
-
-
-        Gameplay3Button.onClick.AddListener(() =>
-        loadScreen("Game3",panel3,ref x3, panel3GameObject));
-        Gameplay4Button.onClick.AddListener(() =>
-        Application.Quit());
+        StartCoroutine(splashScreen());
+        
 
     }
     
@@ -89,8 +58,15 @@ public class UIManager : MonoBehaviour
             x++;
         }
     }
+    
+    IEnumerator splashScreen()
+    {
+        splashScreenImg.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        splashScreenImg.SetActive(false);
 
-    void loadScreenNotDownloadable(string s)
+    }
+    public void loadScreenNotDownloadable(string s)
     {
         SceneManager.LoadScene(s);
     }
